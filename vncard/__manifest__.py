@@ -10,11 +10,14 @@
     'website': 'https://#',
     'depends': ['base_setup','website'],
     'data': [
+        #data
+        'data/sequence.xml',
         # security
+        'security/groups.xml',
         'security/ir.model.access.csv',
 
         # views
-        'views/template_inherit.xml',
+        'views/customer.xml',
 
         #template
         'template/web_template.xml',

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="customer_infor_form" model="ir.ui.view">
+            <field name="name">customer.infor.form</field>
+            <field name="model">customer.infor</field>
+            <field name="arch" type="xml">
+                <form string="Danh sách">
+                    <header>
+                        <field name="state" widget="statusbar" statusbar_visible="0,1,2"/>
+                        <button name="confirm" string="Kích hoạt" type="object" attrs="{'invisible':[('state', 'in', ('1','2'))]}"/>
+                        <button name="cancel" string="Hủy" type="object" attrs="{'invisible':[('state', 'in', ('2','0'))]}"/>
+                        <button name="retrial" string="Quay lại dùng thử" type="object" attrs="{'invisible':[('state', 'in', ('0'))]}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="get_totalclick" type="object"
+                                    class="oe_stat_button" icon="fa-cubes">
+                                <field name="total_click" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <field name="img" widget='image' class="oe_avatar"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" placeholder="Tên" required="True"/>
+                            </h1>
+                            <h2>
+                                <field name="ma_kh"/>
+                            </h2>
+                        </div>
+                        <group string="Thông tin">
+                            <group>
+                                <field name="mobile"/>
+                                <field name="email"/>
+                                <field name="gioi_tinh"/>
+                                <field name="nam_sinh"/>
+                                <field name="dia_chi"/>
+                                <field name="note"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="link_share" string="Liên kết của tôi">
+                                <field name="link_share"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="customer_infor_tree" model="ir.ui.view">
+            <field name="name">customer.infor.tree</field>
+            <field name="model">customer.infor</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách" decoration-danger="state=='0'" decoration-success="state=='1'">
+                    <field name="ma_kh" optional="show"/>
+                    <field name="name" optional="show"/>
+                    <field name="gioi_tinh" optional="hide"/>
+                    <field name="mobile" optional="show"/>
+                    <field name="email" optional="show"/>
+                    <field name="nam_sinh" optional="hide"/>
+                    <field name="total_click" optional="show"/>
+                    <field name="dia_chi" optional="hide"/>
+                    <field name="note" optional="hide"/>
+                    <field name="state" optional="show"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- action view-->
+        <record id="action_view_customer_infor" model="ir.actions.act_window">
+            <field name="name">Danh sách</field>
+            <field name="res_model">customer.infor</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('create_uid', '=', uid)]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new ...
+                </p>
+            </field>
+        </record>
+
+        <record id="link_share_form" model="ir.ui.view">
+            <field name="name">link.share.form</field>
+            <field name="model">link.share</field>
+            <field name="arch" type="xml">
+                <form string="Danh sách">
+                    <sheet>
+                        <group string="Link">
+                            <group>
+                                <field name="name"/>
+                                <field name="link"/>
+                                <field name="icon" widget="image"/>
+                                <field name="count_click"/>
+                                <field name="index"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="link_share_tree" model="ir.ui.view">
+            <field name="name">link.share.tree</field>
+            <field name="model">link.share</field>
+            <field name="arch" type="xml">
+                <tree string="Danh sách">
+                    <field name="name" optional="show"/>
+                    <field name="link" optional="show"/>
+                    <field name="icon" optional="show"/>
+                    <field name="count_click" optional="show"/>
+                    <field name="index" optional="show"/>
+                </tree>
+            </field>
+        </record>
+
+        <menuitem id="menu_customer_infor" name="Trang cá nhân" sequence="1"
+              web_icon="vncard,static/src/img/logo.png" groups="base.group_system,vncard.group_vncard"/>
+        <menuitem id="menu_sub_customer_infor" name="Danh sách" parent="menu_customer_infor" action="action_view_customer_infor"
+              sequence="1" groups="base.group_system,vncard.group_vncard"/>
+    </data>
+</odoo>
+
