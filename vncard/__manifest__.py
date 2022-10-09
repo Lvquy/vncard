@@ -18,6 +18,7 @@
 
         # views
         'views/customer.xml',
+        'views/res_users_views.xml',
 
         #template
         'template/web_template.xml',

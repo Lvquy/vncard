@@ -14,9 +14,49 @@
             <t t-set="title">Thông tin của tôi</t>
             <div class="oe_structure">
                 <div class="container">
-                    <div class="row">
-                        <h2 class="col-12 text-success text-center mt-5 mb-2">Thông tin của tôi</h2>
+                    <div class="row text-center">
+                        <h2 class="col-12 text-success text-center mt-5 mb-2">Danh sách khách hàng</h2>
+                        <t t-foreach="customer" t-as="cus">
+                            <div class="col-12 text-left">
 
+                                <a t-att-href="'/%s' %(cus.ma_kh)"  target="_blank">
+                                    <img t-att-src="'/web/image/customer.infor/%s/img' % cus.id" alt="img"
+                                                 style="width:80px"/>
+                                </a>
+                                <t t-esc="cus.ma_kh"/>
+                                <t t-esc="cus.name"/>
+                                <t t-esc="cus.mobile"/>
+                                <t t-esc="cus.email"/>
+                                <t t-esc="cus.total_click"/>
+                                <t t-esc="cus.state"/>
+                            </div>
+                        </t>
+
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="customer_details">
+        <t t-call="website.layout">
+            <t t-set="title">
+                <t t-esc="customer.sudo().name"/>
+            </t>
+            <div class="oe_structure">
+                <div class="container">
+                    <div class="row">
+                        <h1 class="col-12 text-success text-center mt-5 mb-2">
+                            <t t-esc="customer.sudo().name"/>
+                        </h1>
+                        <table class="table col-4">
+                            <tr>
+                                <td class="align-middle">
+                                    <img t-att-src="'/web/image/customer.infor/%s/img' % customer.id" alt="img"
+                                         style="width:300px"/>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>

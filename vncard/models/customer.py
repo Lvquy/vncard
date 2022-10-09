@@ -6,9 +6,13 @@ from datetime import datetime
 from odoo.exceptions import UserError
 
 
+class ResUsers(models.Model):
+    _inherit = 'res.users'
+
+    customer = fields.Many2one(comodel_name='customer.infor', string='Tài khoản liên kết')
 class CustomerInfor(models.Model):
     _name = 'customer.infor'
-    _rec_name = 'name'
+    _rec_name = 'ma_kh'
     _description = 'Khách hàng'
     _order = "id desc"
 
