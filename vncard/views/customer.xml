@@ -34,6 +34,8 @@
                                 <field name="email"/>
                                 <field name="gioi_tinh"/>
                                 <field name="nam_sinh"/>
+                                <field name="link_user"/>
+
                                 <field name="dia_chi"/>
                                 <field name="note"/>
                             </group>
@@ -61,6 +63,7 @@
                     <field name="nam_sinh" optional="hide"/>
                     <field name="total_click" optional="show"/>
                     <field name="dia_chi" optional="hide"/>
+                    <field name="link_user" optional="hide"/>
                     <field name="note" optional="hide"/>
                     <field name="state" optional="show"/>
                 </tree>
@@ -72,7 +75,7 @@
             <field name="name">Danh sách</field>
             <field name="res_model">customer.infor</field>
             <field name="view_mode">tree,form</field>
-            <field name="domain">[('create_uid', '=', uid)]</field>
+            <field name="domain">[('link_user', '=', uid)]</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create a new ...

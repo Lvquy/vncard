@@ -28,6 +28,7 @@ class CustomerInfor(models.Model):
     total_click = fields.Integer(string='Tổng lượt click')
     link_share = fields.One2many(comodel_name='link.share', inverse_name='customer', string='Liên kết của tôi')
     state = fields.Selection([('0','Dùng thử'),('1','Đã kích hoạt'),('2','Đã hủy')],default='0', string='Trạng thái')
+    link_user = fields.Many2one(comodel_name='res.users', string='Tài khoản liên kết')
 
     @api.model
     def create(self, vals):
